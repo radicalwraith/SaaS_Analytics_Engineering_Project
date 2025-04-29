@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: raw_data
+    description: "Raw transactional sales data capturing product purchases, pricing, customer details, and sales locations."
+    database: product-analytics-458202
+    schema: raw_data
+    tables:
+      - name: sales_transactions
+        description: "Transactional records of sales, including transaction dates, products sold, quantities, prices, and customer information."
+
+models:
+  - name: stg_sales_transactions
+    description: "Staging model that standardizes and cleans raw sales transaction data for downstream analytics."
+    columns:
+      - name: transaction_no
+        description: "Unique identifier for each transaction."
+        tests:
+          - not_null
+      - name: transaction_date
+        description: "Date of the transaction in YYYY-MM-DD format."
+        tests:
+          - not_null
+      - name: product_no
+        description: "Unique identifier for each product sold."
+      - name: product_name
+        description: "Name of the product sold."
+      - name: price
+        description: "Sale price of the product."
+      - name: quantity
+        description: "Quantity of products sold in the transaction."
+      - name: customer_no
+        description: "Unique identifier for each customer."
+        tests:
+          - not_null
+      - name: country
+        description: "Country where the transaction occurred."
+
+
